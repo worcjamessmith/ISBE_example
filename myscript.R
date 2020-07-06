@@ -15,3 +15,4 @@ lines(new$xdata,predict(fit,newdata=new))
 
 
 # fix the data analysis download 
+            
