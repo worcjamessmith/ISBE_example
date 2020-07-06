@@ -1,8 +1,14 @@
-mydata <- iris
+mydata <- read.csv("example_data.csv")
 
-plot(mydata$Sepal.Length, mydata$Sepal.Width)
+plot(mydata$xdata,mydata$ydata, col = "red")
 
+# some guesses for the parameters.
+p1 = 1
+p2 = 0.2
 
-# https://github.com/MalikaIhle/ISBE_Symposium/blob/master/analysis_start.md
-# here the example data link doesn't work
-# can I create an issue or something?
+# do the fit
+fit = nls(ydata ~ p1*cos(p2*xdata) + p2*sin(p1*xdata), data = mydata, start = list(p1=p1,p2=p2))
+
+#Plot the fitted line
+new = data.frame(xdata = seq(min(mydata$xdata),max(mydata$xdata),len=200))
+lines(new$xdata,predict(fit,newdata=new))
